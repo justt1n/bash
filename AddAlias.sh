@@ -10,6 +10,13 @@ COMMAND_OR_SH_FILE=$2
 
 echo "alias $ALIAS_COMMAND='$COMMAND_OR_SH_FILE'" >> ~/.zshrc
 
+if [ ! -d "$HOME/code/bash" ]; then
+  git clone git@github.com:justt1n/bash.git "$HOME/code/bash" || {
+    echo "no ssh"
+    git clone https://github.com/justt1n/bash.git "$HOME/code/bash"
+  }
+fi
+
 source ~/.zshrc
 
 echo "Alias '$ALIAS_COMMAND' added to .zshrc with command: $COMMAND_OR_SH_FILE"
